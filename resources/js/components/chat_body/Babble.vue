@@ -1,0 +1,110 @@
+<template>
+  <div class="main">
+    <div class="tab-content" id="nav-tabContent">
+      <!-- start of babble -->
+      <div class="babble tab-pane fade active show" id="list-chat" role="tabpanel" aria-labelledby="list-chat-list">
+      <!-- chat -->
+      <div class="chat" id="chat1">
+        <div class="top">
+          <div class="container">
+            <div class="col-md-12">
+              <div class="inside">
+                <a href="#"><img class="avatar-md" src="dist/img/avatars/avatar-female-5.jpg" data-toggle="tooltip" data-placement="top" title="Keith" alt="avatar"></a>
+                <div class="status">
+                  <i class="material-icons online">fiber_manual_record</i>
+                </div>
+                <div class="data">
+                  <h5><a href="#">Keith Morris</a></h5>
+                  <span>Active now</span>
+                </div>
+                <button class="btn connect d-md-block d-none" name="1"><i class="material-icons md-30">phone_in_talk</i></button>
+                <button class="btn connect d-md-block d-none" name="1"><i class="material-icons md-36">videocam</i></button>
+                <button class="btn d-md-block d-none"><i class="material-icons md-30">info</i></button>
+                <div class="dropdown">
+                  <button class="btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="material-icons md-30">more_vert</i></button>
+                  <div class="dropdown-menu dropdown-menu-right">
+                    <button class="dropdown-item connect" name="1"><i class="material-icons">phone_in_talk</i>Voice Call</button>
+                    <button class="dropdown-item connect" name="1"><i class="material-icons">videocam</i>Video Call</button>
+                    <hr>
+                    <button class="dropdown-item"><i class="material-icons">clear</i>Clear History</button>
+                    <button class="dropdown-item"><i class="material-icons">block</i>Block Contact</button>
+                    <button class="dropdown-item"><i class="material-icons">delete</i>Delete Contact</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- content -->
+        <chatmessage
+        />
+          <!-- v-for="message in messages" -->
+          <!-- :key="message.id" :message="message" -->
+        <!-- end of content -->
+        <chatform/>
+        <!-- chat end -->
+        <call/>
+        <!-- End of Call -->
+      </div>
+      <!-- babble ends not needed----|> -->
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import call from './babble_content/Call'
+import chatmessage from './babble_content/ChatMessage.vue'
+import chatform from './babble_content/ChatForm.vue'
+import Event from '../../event.js'
+
+export default {
+  data() {
+    return {
+      messages: []
+    }
+  },
+  mounted() {
+    // axios.get('http://127.0.0.1:8000/api/message').then((response) => {
+    //   this.messages = response.data;
+    // });
+    // Event.$on('added_message', (message) => {
+    //   this.messages.unshift(message);
+    //   if(message.selfMessage) {
+    //     this.$refs.message.scrollTop = 0;
+    //   }
+    // });
+  },
+  components: {
+    call,
+    chatmessage,
+    chatform
+  }
+}
+</script>
+   <div class="message">
+                <img class="avatar-md" src="dist/img/avatars/avatar-female-5.jpg" data-toggle="tooltip" data-placement="top" title="Keith" alt="avatar">
+                <div class="text-main">
+                  <div class="text-group">
+                    <div class="text">
+                      <p>Coming along nicely, we've got a draft for the client quarries completed.</p>
+                    </div>
+                  </div>
+                  <span>02:56 PM</span>
+                </div>
+              </div>
+              <div class="message me">
+                <div class="text-main">
+                  <div class="text-group me">
+                    <div class="text me">
+                      <p>Roger that boss!</p>
+                    </div>
+                  </div>
+                  <div class="text-group me">
+                    <div class="text me">
+                      <p>I have already started gathering some stuff for the mood boards, excited to start!</p>
+                    </div>
+                  </div>
+                  <span>10:21 PM</span>
+                </div>
+              </div>
