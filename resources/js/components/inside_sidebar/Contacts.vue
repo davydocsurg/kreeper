@@ -18,26 +18,25 @@
 
     <div class="contacts">
       <h1>Contacts</h1>
-      <div class="list-group" id="contacts" role="tablist">
-        <a href="#" class="filterMembers all online contact" data-toggle="list">
-          <img class="avatar-md" src="dist/img/avatars/avatar-female-1.jpg" data-toggle="tooltip" data-placement="top" title="Janette" alt="avatar">
+      <div class="list-group" id="contacts" role="tablist" v-for="user in users" :key="user.id">
+        <a href="#" class="filterMembers all online contact" data-toggle="list" >
+          <img class="avatar-md" :src="user.avatar" data-toggle="tooltip" data-placement="top" title="Janette" alt="user.name">
           <div class="status">
             <i class="material-icons online">fiber_manual_record</i>
           </div>
           <div class="data">
-            <h5 v-for="user in users" :key="user">
-               <!-- v-for="user in users" :key="user" -->
-              <!-- Janette Dalton -->
+            <h5>
               {{ user.name }}
             </h5>
-            <p>Sofia, Bulgaria</p>
+            <p>{{ user.email }}</p>
+            <p v-if="user.location">{{ user.location }}</p>
           </div>
           <div class="person-add">
             <i class="material-icons">person</i>
           </div>
         </a>
 
-        <a href="#" class="filterMembers all online contact" data-toggle="list">
+        <!-- <a href="#" class="filterMembers all online contact" data-toggle="list">
           <img class="avatar-md" src="dist/img/avatars/avatar-male-1.jpg" data-toggle="tooltip" data-placement="top" title="Michael" alt="avatar">
           <div class="status">
             <i class="material-icons online">fiber_manual_record</i>
@@ -49,9 +48,9 @@
           <div class="person-add">
             <i class="material-icons">person</i>
           </div>
-        </a>
+        </a> -->
         <!-- offline -->
-        <a href="#" class="filterMembers all offline contact" data-toggle="list">
+       <!--  <a href="#" class="filterMembers all offline contact" data-toggle="list">
           <img class="avatar-md" src="dist/img/avatars/avatar-female-5.jpg" data-toggle="tooltip" data-placement="top" title="Keith" alt="avatar">
           <div class="status">
             <i class="material-icons offline">fiber_manual_record</i>
@@ -63,8 +62,8 @@
           <div class="person-add">
             <i class="material-icons">person</i>
           </div>
-        </a>
-        <a href="#" class="filterMembers all offline contact" data-toggle="list">
+        </a> -->
+     <!--    <a href="#" class="filterMembers all offline contact" data-toggle="list">
           <img class="avatar-md" src="dist/img/avatars/avatar-female-6.jpg" data-toggle="tooltip" data-placement="top" title="Louis" alt="avatar">
           <div class="status">
             <i class="material-icons offline">fiber_manual_record</i>
@@ -76,7 +75,7 @@
           <div class="person-add">
             <i class="material-icons">person</i>
           </div>
-        </a>
+        </a> -->
       </div>
     </div>
   <!-- </div> -->
@@ -108,14 +107,13 @@ export default {
     }
   },
 
-  beforeMount() {
-    axios.get('http://127.0.0.1:8000/api/users')
-    .then(response => {
-      this.users = response.data;
-    })
+  mounted() {
+    const url = window.location.origin+'/users'
+    axios.get(url)
+    .then(response => this.users = response.data)
     .catch(error => {
-      console.log(error);
+      console.log(error)
     })
-  }
+  },
 }
 </script>

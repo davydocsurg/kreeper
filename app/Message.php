@@ -6,17 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Message extends Model
 {
-    protected $fillable = ['body'];
+    // protected $fillable = ['from', 'to', 'message', 'is_read'];
 
-    protected $appends = ['selfMessage'];
+    protected $guarded = [];
 
-    public function getSelfMessageAttribute()
+    public function fromUser()
     {
-        return $this->user_id === auth()->user()->id;
-    }
-
-    public function user()
-    {
-        return $this->belongsTo(User::class);
+        return $this->hasOne(User::class, 'id', 'from');
     }
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="call" id="call1">
+  <div class="call" id="">
     <div class="content">
       <div class="container">
         <div class="col-md-12">

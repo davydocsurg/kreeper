@@ -4,7 +4,7 @@
       <i class="material-icons md-30 online">colorize</i>
       <div class="data ml-2">
         <h5 class="text-dark">Appearance</h5>
-        <p class="text-muted">Customize the look of Swipe</p>
+        <p class="text-muted">Customize your theme</p>
       </div>
       <i class="material-icons ml-5">keyboard_arrow_right</i>
     </a>

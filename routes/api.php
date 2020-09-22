@@ -24,13 +24,14 @@ Route::group([
 ], function () {
     // get users
 	// Route::get('/users','UserController@index');
-    Route::get('/users','UserController@show');
+    // Route::get('/users','UserController@show');
     // File Upload
-    Route::post('file/upload', 'UploadController@fileUpload');
-    Route::get('details', 'UploadController@userDetails');
+    // Route::post('file/upload', 'UploadController@fileUpload');
+    // Route::get('details', 'UploadController@userDetails');
     // send messages
-    Route::get('/message', 'MessageController@index');
-    Route::post('/message', 'MessageController@store');
+    // Route::get('/message/{id}', 'MessageController@createMessage');
+    // Route::post('/message/{id}', 'MessageController@store');
     // Edit Avatar
-    Route::post('crop/avatar', 'UserController@cropAvatar');
+    // Route::post('add/avatar', 'UserController@addAvatar');
+    // Route::get('add/avatar', 'UserController@addAvatar');
 });

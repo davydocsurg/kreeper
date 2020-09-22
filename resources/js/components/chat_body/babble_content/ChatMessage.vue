@@ -1,63 +1,101 @@
 <template>
-  <div class="content" id="content">
-    <div class="container">
+  <div class="content" id="" ref="msgs">
+    <div class="container" v-if="user">
       <div class="col-md-12">
-        <!-- <div class="date">
-          <hr>
-          <span>Yesterday</span>
-          <hr>
-        </div> -->
-        <div class="message">
-          <img class="avatar-md" src="dist/img/avatars/avatar-female-5.jpg" data-toggle="tooltip" data-placement="top" title="Keith" alt="avatar">
-          <div class="text-main">
-            <div class="text-group">
-              <div class="text">
-                <p>We've got some killer ideas kicking about already.</p>
-                <!-- <p>{{ message.body}}</p> -->
-              </div>
+        <div class="content empty" v-if="messages < 1">
+          <div class="container">
+          <div class="col-md-12">
+            <div class="no-messages">
+            <i class="material-icons md-48">forum</i>
+            <p>Seems people are shy to start the chat. Break the ice, send the first message.</p>
             </div>
-            <span>09:46 AM</span>
+          </div>
           </div>
         </div>
-        <div class="message me"
+        <div
+          v-for="message in messages"
+          :class="`${message.to == user.id ? 'message me' : 'message'}`" :key="message.id"
         >
-        <!-- :class="{ 'me': message.selfMessage }" -->
-          <div class="text-main">
-            <div class="text-group me"
-            >
-            <!-- :class="{ 'me': message.selfMessage }" -->
-              <div class="text me"
-              >
-              <!-- :class="{ 'me': message.selfMessage }" -->
-                <!-- <p>{{ message.body}}</p> -->
-                <p>Can't wait! How are we coming along with the client?</p>
+          <!-- <img class="avatar-md" :src="user.avatar" data-toggle="tooltip" data-placement="top" title="user.name" alt="user.name"> -->
+          <div class="text-main" v-if="message.text">
+            <div :class="`${message.to == user.id ? 'text-group me' : 'text-group'}`" >
+              <div :class="`${message.to == user.id ? 'text me' : 'text'}`" >
+                <p>{{ message.text }}
+                  <!-- <i class="material-icons ml-3 float-right" v-if="authUser">check</i> -->
+                </p>
               </div>
             </div>
-            <span>11:32 AM</span>
+            <div class="attachment">
+              <img :src="'/storage/'+message.image"  alt="" srcset="" v-if="message.image">
+            </div>
+            <small>
+              {{message.created_at | date}}
+            </small>
+          </div>
+      </div>
+      <div class="message" v-if="typingUser">
+       <div class="text-main">
+          <div class="text-group">
+            <div class="text typing">
+              <div class="wave">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
           </div>
         </div>
-
-        <!-- <div class="message">
-          <img class="avatar-md" src="dist/img/avatars/avatar-female-5.jpg" data-toggle="tooltip" data-placement="top" title="Keith" alt="avatar">
-          <div class="text-main">
-            <div class="text-group">
-              <div class="text typing">
-                <div class="wave">
-                  <span class="dot"></span>
-                  <span class="dot"></span>
-                  <span class="dot"></span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> -->
+      </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+
 export default {
-  props: ['message']
+   props: {
+    user: {
+      type: Object,
+    },
+
+    // MsgRead: {
+    //   required: true
+    // },
+
+    messages: {
+      type: Array,
+      required: true
+    }
+  },
+
+  // data() {
+  //   return {
+  //     messages: [],
+  //     sendMsg: ''
+  //   }
+  // },
+
+  mounted() {
+
+  },
+
+  methods: {
+    scrollToBottom() {
+      setTimeout(() => {
+        this.$refs.msgs.scrollTop = this.$refs.msgs.scrollHeight - this.$refs.msgs.clientHeight
+      }, 5);
+    }
+  },
+
+  watch: {
+   user(user) {
+     this.scrollToBottom()
+   },
+
+    messages(messages) {
+     this.scrollToBottom()
+   }
+  }
 }
 </script>

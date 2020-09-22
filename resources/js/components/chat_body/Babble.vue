@@ -7,14 +7,17 @@
       <div class="chat" id="chat1">
         <div class="top">
           <div class="container">
+                <!--   :src="user.avatar" --> 
             <div class="col-md-12">
               <div class="inside">
-                <a href="#"><img class="avatar-md" src="dist/img/avatars/avatar-female-5.jpg" data-toggle="tooltip" data-placement="top" title="Keith" alt="avatar"></a>
+                <a href="#"><img class="avatar-md" 
+                  data-toggle="tooltip" data-placement="top" 
+                  title="Keith" alt="user.name"></a>
                 <div class="status">
                   <i class="material-icons online">fiber_manual_record</i>
                 </div>
                 <div class="data">
-                  <h5><a href="#">Keith Morris</a></h5>
+                  <h5><a href="#">{{ user ? user.name : 'select a Contact'}}</a></h5>
                   <span>Active now</span>
                 </div>
                 <button class="btn connect d-md-block d-none" name="1"><i class="material-icons md-30">phone_in_talk</i></button>
@@ -35,35 +38,45 @@
             </div>
           </div>
         </div>
-        <!-- content -->
-        <chatmessage
-        />
-          <!-- v-for="message in messages" -->
-          <!-- :key="message.id" :message="message" -->
-        <!-- end of content -->
-        <chatform/>
-        <!-- chat end -->
+
+        <conversation :user="selectedUser" :messages="messages"/>
+        <!-- End of Chat -->
+
+          <!-- <div class="container">
+            <chatform @send="sendMessage"/>
+          </div> -->
+
+          </div>
         <call/>
         <!-- End of Call -->
       </div>
       <!-- babble ends not needed----|> -->
       </div>
     </div>
-  </div>
+  <!-- </div> -->
 </template>
 
 <script>
 import call from './babble_content/Call'
-import chatmessage from './babble_content/ChatMessage.vue'
-import chatform from './babble_content/ChatForm.vue'
+import conversation from './Conversation.vue'
+// import chatform from './babble_content/ChatForm.vue'
 import Event from '../../event.js'
 
 export default {
-  data() {
-    return {
-      messages: []
+  props: {
+    user: {
+      type: Object,
+      default: null
     }
   },
+
+  data() {
+    return {
+      messages: [],
+      selectedUser: null
+    }
+  },
+
   mounted() {
     // axios.get('http://127.0.0.1:8000/api/message').then((response) => {
     //   this.messages = response.data;
@@ -77,8 +90,8 @@ export default {
   },
   components: {
     call,
-    chatmessage,
-    chatform
+    conversation,
+    // chatform
   }
 }
 </script>

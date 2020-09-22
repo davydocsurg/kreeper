@@ -43,8 +43,16 @@ class User extends Authenticatable
      * @param string $value
      * @return string
      */
-    public function getAvatarAttribute($value)
-    {
-        return isset($value) ? $value : config('mirou.default_avatar');
+    // public function getAvatarAttribute($value)
+    // {
+    //     return isset($value) ? $value : config('mirou.default_avatar');
+    // }
+
+    public function message(){
+        return $this->hasMany('App\Message','user_id');
     }
+
+    // public function receiver(){
+    //     return $this->hasMany('App\Message','receiver_id','id');
+    // }
 }

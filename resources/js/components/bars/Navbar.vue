@@ -1,12 +1,13 @@
 <template>
-  <div class="layout">
-    <div class="navigation">
+  <!-- <div class=""> -->
+    <!-- <div class="navigation"> -->
       <div class="container">
         <div class="inside">
-          <div class="nav nav-tab menu">
-            <button class="btn"><img class="avatar-xl" src="dist/img/avatars/avatar-male-1.jpg" alt="avatar"></button>
+          <div class="nav nav-tab menu" v-for="authUser in authUsers" :key="authUser.id">
+            <button class="btn"><img class="avatar-xl" :src="authUser.avatar" alt="authUser.name"></button>
             <a href="#contacts" data-toggle="tab"><i class="material-icons">account_circle</i></a>
-            <a href="#messages" data-toggle="tab" class="active"><i class="material-icons active">chat_bubble_outline</i></a>            <a href="#notifications" data-toggle="tab" class="f-grow1"><i class="material-icons">notifications_none</i></a>
+            <a href="#messages" data-toggle="tab" class="active f-grow1"><i class="material-icons active">chat_bubble_outline</i></a>
+            <!-- <a href="#notifications" data-toggle="tab" class="f-grow1"><i class="material-icons">notifications_none</i></a> -->
             <button class="btn mode" @click="toggleTheme"><i class="material-icons">brightness_2</i></button>
             <a href="#settings" data-toggle="tab"><i class="material-icons">settings</i></a>
             <button class="btn power" @click="logout">
@@ -20,21 +21,39 @@
           </div>
         </div>
       </div>
-    </div>
-    <div class="sidebar" id="sidebar">
-      <sidebar/>
-    </div>
-    <babble/>
-  </div>
+    <!-- </div> -->
+      <!-- <sidebar/> -->
+  <!-- </div> -->
 </template>
 
 <script>
 import axios from 'axios'
-import sidebar from './Sidebar.vue'
-import babble from './../chat_body/Babble.vue'
+// import sidebar from './Sidebar.vue'
+// import babble from './../chat_body/Babble.vue'
 
 export default {
+  // props: {
+  //   user: {
+  //     type: Object,
+  //     required: true
+  //   }
+  // },
+
+  data() {
+    return {
+      authUsers: [],
+      lightsout: false,
+      lightson: true
+    }
+  },
+
   mounted() {
+    const url = window.location.origin+'/auth/user'
+    axios.get(url)
+    .then(response => this.authUsers = response.data)
+    .catch(error => {
+      console.log(error)
+    })
   },
 
   // data() {
@@ -61,8 +80,8 @@ export default {
   },
 
   components: {
-    sidebar,
-    babble
+    // sidebar,
+    // babble
   }
 }
 </script>

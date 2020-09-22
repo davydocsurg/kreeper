@@ -40,11 +40,15 @@
 </head>
 <body>
 
-<div id="app">
-<main class="">
-	@yield('content')
-</main>
+<div id="app" class="">
+	<main class="">
+		@yield('content')
+	</main>
 </div>
+
+<script>
+
+</script>
 
 </body>
 </html>
