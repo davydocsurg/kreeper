@@ -21,7 +21,8 @@
     </div>
 </div> -->
 <!-- <div class="layout"> -->
-    <navbar/>
+    <sidebar :user="{{ auth()->user() }}" id="app" />
+
     <!-- <sidebar/> -->
 <!-- </div> -->
 @endsection

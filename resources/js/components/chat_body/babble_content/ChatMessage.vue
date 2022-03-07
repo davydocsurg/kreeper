@@ -16,24 +16,36 @@
           v-for="message in messages"
           :class="`${message.to == user.id ? 'message me' : 'message'}`" :key="message.id"
         >
-          <!-- <img class="avatar-md" :src="user.avatar" data-toggle="tooltip" data-placement="top" title="user.name" alt="user.name"> -->
+          <!-- <div class="" v-for="authUser in authUsers" :key="authUser.id"> -->
+            <!-- <img class="avatar-md" v-if="authUser.avatar" :src="user.avatar" data-toggle="tooltip" data-placement="top" title="user.name" alt="user.name"> -->
+          <!-- </div> -->
           <div class="text-main" v-if="message.text">
             <div :class="`${message.to == user.id ? 'text-group me' : 'text-group'}`" >
-              <div :class="`${message.to == user.id ? 'text me' : 'text'}`" >
-                <p>{{ message.text }}
-                  <!-- <i class="material-icons ml-3 float-right" v-if="authUser">check</i> -->
+              <div class="d-flex" :class="`${message.to == user.id ? 'text me' : 'text'}`" >
+                <p class="float-left container">
+                  {{ message.text }}
+                </p>
+                <p class="float-right">
+                  <i class="fas fa-check-circle text-center"></i>
+                  <!-- <i class="fas fa-check-double float-right text-primary" v-if="selected"></i> -->
                 </p>
               </div>
             </div>
-            <div class="attachment">
-              <img :src="'/storage/'+message.image"  alt="" srcset="" v-if="message.image">
+            <div class="text-main" v-if="message.image">
+              <div :class="`${message.to == user.id ? 'text-group me' : 'text-group'}`" >
+                <div :class="`${message.to == user.id ? 'text me' : 'text'}`">
+                   <div class="attachment">
+                    <img :src="'/storage/'+message.image"  alt="" srcset="">
+                  </div>
+                </div>
+              </div>
             </div>
             <small>
               {{message.created_at | date}}
             </small>
           </div>
       </div>
-      <div class="message" v-if="typingUser">
+      <!-- <div class="message">
        <div class="text-main">
           <div class="text-group">
             <div class="text typing">
@@ -45,7 +57,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
       </div>
     </div>
   </div>
@@ -69,15 +81,22 @@ export default {
     }
   },
 
-  // data() {
-  //   return {
-  //     messages: [],
-  //     sendMsg: ''
-  //   }
-  // },
+  data() {
+    return {
+      // messages: [],
+      // sendMsg: ''
+      authUsers: []
+    }
+  },
 
   mounted() {
-
+    const url = window.location.origin + "/auth/user";
+    axios
+      .get(url)
+      .then((response) => (this.authUsers = response.data))
+      .catch((error) => {
+        console.log(error);
+      });
   },
 
   methods: {

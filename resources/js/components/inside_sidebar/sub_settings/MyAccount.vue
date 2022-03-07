@@ -15,7 +15,7 @@
           <img class="avatar-xl" :src="authUser.avatar" alt="authUser.name">
           <!-- <img src="avatarImage" class="avatar-xl"> -->
           <label>
-            <input v-model="avatarImage" name="avatar-xl" class="btn button" >
+            <input name="avatar-xl" class="btn button" >
             <span>Modify avatar</span>
           </label>
 

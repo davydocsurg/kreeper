@@ -57,8 +57,15 @@ class MessageController extends Controller
 
     public function sendMessage(Request $request)
     {
+
+        // $file = $request->file('image');
+        //     $file->move(public_path(). '/posts/', $file->getClientOriginalName());
+        //     $url = URL::to("/"). '/posts/'. $file->
+        //     getClientOriginalName();
+
         if(request()->has('file')){
             $filename = request('file')->store('chat');
+            // $filename = request('file')->move('chat');
             $message=Message::create([
                 'from' => auth()->id(),
                 'to' => $request->user_id,
@@ -72,13 +79,7 @@ class MessageController extends Controller
                 'text' => $request->text
             ]);
 
-            broadcast(new NewMessage($message));
         }
-
-
-        // broadcast(new MessageSent(auth()->user(),$message->load('user')))->toOthers();
-
-        // return response(['status'=>'Message sent successfully','message'=>$message]);;
 
         broadcast(new NewMessage($message));
 

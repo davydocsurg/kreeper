@@ -7,11 +7,11 @@
       <div class="chat" id="chat1">
         <div class="top">
           <div class="container">
-                <!--   :src="user.avatar" --> 
+                <!--   :src="user.avatar" -->
             <div class="col-md-12">
               <div class="inside">
-                <a href="#"><img class="avatar-md" 
-                  data-toggle="tooltip" data-placement="top" 
+                <a href="#"><img class="avatar-md"
+                  data-toggle="tooltip" data-placement="top"
                   title="Keith" alt="user.name"></a>
                 <div class="status">
                   <i class="material-icons online">fiber_manual_record</i>

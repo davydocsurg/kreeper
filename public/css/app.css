@@ -10904,3 +10904,8 @@ a.text-dark:focus {
   }
 }
 
+.material-icons-exact-active {
+  background-color: #007bff;
+  color: #ffffff !important;
+}
+

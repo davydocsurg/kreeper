@@ -17,9 +17,10 @@
       <h1>Chats</h1>
       <div class="list-group" id="chats" role="tablist">
         <a href="#list-chat" v-for="user in sortedUsers" :key="user.id" class="filterDiscussions all unread single active" id="list-chat-list" data-toggle="list" role="tab" @click="selectUser(user)" :class="{ 'selected': user == selected }">
-          <img class="avatar-md" :src="user.avatar" data-toggle="tooltip" data-placement="top" title="" alt="user.name">
+          <img class="avatar-md" :src="user.avatar" data-toggle="tooltip" data-placement="top" :title="user.name" alt="user.name">
           <div class="status" >
-            <i class="material-icons" :class="(ActiveUsers.find(ActiveUser=>ActiveUser.id===user.id))? 'online' : 'offline'">fiber_manual_record</i>
+            <i class="material-icons online">fiber_manual_record</i>
+            <!-- <i class="material-icons" :class="(ActiveUsers.find(ActiveUser=>ActiveUser.id===user.id))? 'online' : 'offline'">fiber_manual_record</i> -->
           </div>
           <div class="new bg-yellow" v-if="user.unread"> <!-- v-if="user.unread" -->
             <span class="pending">{{ user.unread }}</span> <!-- {{user.unread}} -->
@@ -82,10 +83,10 @@ export default {
       type: Array,
       default: []
     },
-    ActiveUsers: {
-      type: Array,
-      default: []
-    },
+    // ActiveUsers: {
+    //   type: Array,
+    //   default: []
+    // },
   },
 
   data() {

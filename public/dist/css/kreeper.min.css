@@ -23,3 +23,7 @@ a,img{-moz-transition:all .3s;-webkit-transition:all .3s}a,a:hover{text-decorati
   font-size: 40px !important;
   text-align: center !important;
 }
+
+.navigation .inside .menu .logout:hover {
+  color: #dc3545;
+}

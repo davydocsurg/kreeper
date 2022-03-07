@@ -76,19 +76,19 @@ export default {
   },
 
   mounted() {
-    Echo.join('Mirou')
-      .here((users) => {
-            console.log('online',users);
-            // this.ActiveUsers=users;
-      })
-      .joining((user) => {
-          // this.onlineFriends.push(user);
-          console.log('joining',user.name);
-      })
-      .leaving((user) => {
-          // this.onlineFriends.splice(this.onlineFriends.indexOf(user),1);
-          console.log('leaving',user.name);
-      });
+    // Echo.join('Mirou')
+    //   .here((users) => {
+    //         console.log('online',users);
+    //         this.ActiveUsers=users;
+    //   })
+    //   .joining((user) => {
+    //       this.onlineFriends.push(user);
+    //       console.log('joining',user.name);
+    //   })
+    //   .leaving((user) => {
+    //       this.onlineFriends.splice(this.onlineFriends.indexOf(user),1);
+    //       console.log('leaving',user.name);
+    //   });
     Echo.private(`messages${this.user.id}`)
       .listen('NewMessage', (e) => {
         this.handleIncomingMsg(e.message)
@@ -162,10 +162,10 @@ export default {
 
     },
 
-    sendTypingEvent() {
-      Echo.private(`messages${this.user.id}`)
-        .whisper('typing', this.authUser)
-    }
+    // sendTypingEvent() {
+    //   Echo.private(`messages${this.user.id}`)
+    //     .whisper('typing', this.authUser)
+    // }
   }
 }
 </script>

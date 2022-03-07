@@ -29,7 +29,7 @@
 export default {
   data() {
     return {
-      lightsout: false,
+      // lightsout: false,
       lightson: true
     }
   },

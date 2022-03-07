@@ -11,6 +11,8 @@ import moment from 'moment';
 import VueChatScroll from 'vue-chat-scroll';
 import { Form, HasError, AlertError } from 'vform';
 import swal from 'sweetalert2'
+import store from './store'
+
 window.swal = swal;
 
 const toast = swal.mixin({
@@ -19,6 +21,9 @@ const toast = swal.mixin({
   showConfirmButton: false,
   timer: 3000
 });
+
+const VueUploadComponent = require('vue-upload-component')
+Vue.component('file-upload', VueUploadComponent)
 
 window.toast = toast;
 window.Form = Form;
@@ -43,6 +48,7 @@ Vue.filter('date', function(created) {
 
 
 const app = new Vue({
+    store,
     el: '#app'
     // components: {App}
 });

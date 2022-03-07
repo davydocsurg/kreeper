@@ -19,18 +19,20 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::group([
-    'namespace' => 'Api',
-    'middleware' => ['auth:api'],
-], function () {
+    // 'namespace' => 'Api',
+    'middleware' => 'auth:api',
+], function ($router) {
     // get users
-	// Route::get('/users','UserController@index');
+	Route::get('/users','Api\MessageController@index');
     // Route::get('/users','UserController@show');
     // File Upload
     // Route::post('file/upload', 'UploadController@fileUpload');
     // Route::get('details', 'UploadController@userDetails');
+
     // send messages
-    // Route::get('/message/{id}', 'MessageController@createMessage');
-    // Route::post('/message/{id}', 'MessageController@store');
+    Route::get('/message/{id}', 'API\MessageController@createMessage');
+    Route::post('/message/send', 'API\MessageController@store');
+
     // Edit Avatar
     // Route::post('add/avatar', 'UserController@addAvatar');
     // Route::get('add/avatar', 'UserController@addAvatar');
