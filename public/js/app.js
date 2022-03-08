@@ -2287,6 +2287,47 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2311,8 +2352,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     logout: function logout() {
-      window.location = "login";
       axios.post("http://127.0.0.1:8000/logout");
+      window.location = "login";
     },
     sendMessage: function sendMessage(text) {
       var _this = this;
@@ -71816,7 +71857,9 @@ var render = function() {
                                         { staticClass: "material-icons" },
                                         [_vm._v("power_settings_new")]
                                       ),
-                                      _vm._v("Logout\n                    ")
+                                      _vm._v(
+                                        "Logout\n                                        "
+                                      )
                                     ]
                                   )
                                 ]
@@ -71916,7 +71959,7 @@ var staticRenderFns = [
       { staticClass: "dropdown-item connect", attrs: { name: "1" } },
       [
         _c("i", { staticClass: "material-icons" }, [_vm._v("phone_in_talk")]),
-        _vm._v("Voice Call\n                    ")
+        _vm._v("Voice Call\n                                        ")
       ]
     )
   },
@@ -71929,7 +71972,7 @@ var staticRenderFns = [
       { staticClass: "dropdown-item connect", attrs: { name: "1" } },
       [
         _c("i", { staticClass: "material-icons" }, [_vm._v("videocam")]),
-        _vm._v("Video Call\n                    ")
+        _vm._v("Video Call\n                                        ")
       ]
     )
   },
@@ -71939,7 +71982,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("button", { staticClass: "dropdown-item" }, [
       _c("i", { staticClass: "material-icons" }, [_vm._v("clear")]),
-      _vm._v("Clear History\n                    ")
+      _vm._v("Clear History\n                                        ")
     ])
   },
   function() {
@@ -71948,7 +71991,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("button", { staticClass: "dropdown-item" }, [
       _c("i", { staticClass: "material-icons" }, [_vm._v("block")]),
-      _vm._v("Block Contact\n                    ")
+      _vm._v("Block Contact\n                                        ")
     ])
   },
   function() {
@@ -71957,7 +72000,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("button", { staticClass: "dropdown-item" }, [
       _c("i", { staticClass: "material-icons" }, [_vm._v("delete")]),
-      _vm._v("Delete Contact\n                    ")
+      _vm._v("Delete Contact\n                                        ")
     ])
   },
   function() {

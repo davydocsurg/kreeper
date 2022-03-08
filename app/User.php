@@ -2,7 +2,6 @@
 
 namespace App;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -16,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'avatar', 'nickname', 'description'
+        'name', 'email', 'password', 'profile_pics', 'nickname', 'description',
     ];
 
     /**
@@ -37,7 +36,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-     /**
+    /**
      * Get the avatar and return the default avatar if the avatar is null.
      *
      * @param string $value
@@ -48,8 +47,9 @@ class User extends Authenticatable
     //     return isset($value) ? $value : config('mirou.default_avatar');
     // }
 
-    public function message(){
-        return $this->hasMany('App\Message','user_id');
+    public function message()
+    {
+        return $this->hasMany('App\Message', 'user_id');
     }
 
     // public function receiver(){
