@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -11,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+ */
 
 Route::get('/', function () {
     // broadcast(new NewMessage('fromUser'));
@@ -20,26 +21,20 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/authUser', 'UserController@authUser');
+Route::get('/users', 'UserController@index');
+
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/chat', 'HomeController@index2')->name('darkhome');
 
-// messages
-// Route::get('/message/{id}', 'MessageController@createMessage');
-// Route::post('/message/{id}', 'MessageController@storeMessage');
-
-// Route::get('file/upload', 'UploadController@fileUpload');
-// Route::post('file/upload', 'UploadController@fileUpload');
-
-// Route::get('get/avatar', 'UserController@getAvatar');
-Route::post('add/avatar', 'UserController@addAvatar');
-
 // update profile
-Route::post('update/profile', 'UserController@updateProfile');
+Route::post('/updateProfile', 'UserController@updateProfile');
 
-// all users
-Route::get('/users','MessageController@index');
-// auth user
-Route::get('/auth/user','UserController@authUser');
+// Route::get('/users','Api\MessageController@index');
+
+// File Upload
+Route::post('userFileUpoad', 'UploadController@uploadUserPhoto');
+Route::post('msgFileUpload', 'UploadController@uploadMessagePhoto');
 
 // messages
 Route::get('/conversation/{id}', 'MessageController@getMessage');

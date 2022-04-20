@@ -18,13 +18,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('/authUser', 'UserController@authUser');
+Route::get('/users', 'UserController@index');
+
 Route::group([
     // 'namespace' => 'Api',
     'middleware' => 'auth:api',
 ], function () {
     // get users
-    Route::get('/users', 'UserController@index');
-    Route::get('/authUser', 'UserController@authUser');
 
     // update profile
     Route::post('/updateProfile', 'UserController@updateProfile');

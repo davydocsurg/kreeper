@@ -1973,7 +1973,7 @@ __webpack_require__.r(__webpack_exports__);
   // },
   data: function data() {
     return {
-      authUsers: [] // lightsout: false,
+      authUser: [] // lightsout: false,
       // lightson: true,
 
     };
@@ -1981,9 +1981,10 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    var url = window.location.origin + "/auth/user";
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(url).then(function (response) {
-      return _this.authUsers = response.data;
+    var url = window.location.origin + "/authUser";
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(url).then(function (res) {
+      console.log(authUser.avatar);
+      _this.authUser = res.data;
     })["catch"](function (error) {
       console.log(error);
     });
@@ -2056,6 +2057,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 // import babble from './../chat_body/Babble.vue'
 
 
@@ -2096,6 +2099,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
+    fetchAuthUser(); // console.log(window.location.origin);
     // Echo.join('Mirou')
     //   .here((users) => {
     //         console.log('online',users);
@@ -2109,7 +2113,8 @@ __webpack_require__.r(__webpack_exports__);
     //       this.onlineFriends.splice(this.onlineFriends.indexOf(user),1);
     //       console.log('leaving',user.name);
     //   });
-    Echo["private"]("messages".concat(this.user.id)).listen('NewMessage', function (e) {
+
+    Echo["private"]("messages".concat(this.user.id)).listen("NewMessage", function (e) {
       _this.handleIncomingMsg(e.message);
     }); // .listenForWhisper('typing', user => {
     // this.act = user
@@ -2122,15 +2127,6 @@ __webpack_require__.r(__webpack_exports__);
     // console.log('typing');
     // console.log(response);
     // })
-
-    var url = window.location.origin + '/users'; // fetch(url)
-    // .then(response=> response.json())
-
-    axios.get(url).then(function (response) {
-      return _this.users = response.data;
-    })["catch"](function (error) {
-      console.log(error);
-    });
   },
   methods: {
     startChat: function startChat(user) {
@@ -2164,6 +2160,16 @@ __webpack_require__.r(__webpack_exports__);
         if (reset) single.unread = 0; // this.MsgRead = true
         else single.unread += 1;
         return single;
+      });
+    },
+    fetchAuthUser: function fetchAuthUser() {
+      var _this3 = this;
+
+      var url = window.location.origin + "/users";
+      axios.get(url).then(function (response) {
+        return _this3.users = response.data;
+      })["catch"](function (error) {
+        console.log(error);
       });
     } // sendTypingEvent() {
     //   Echo.private(`messages${this.user.id}`)
@@ -2988,6 +2994,56 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
  // import _ from 'lodash'
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3010,7 +3066,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     selectUser: function selectUser(user) {
       this.selected = user;
-      this.$emit('selected', user);
+      this.$emit("selected", user);
     }
   },
   computed: {
@@ -72279,76 +72335,59 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-    _c(
-      "div",
-      { staticClass: "inside" },
-      _vm._l(_vm.authUsers, function (authUser) {
-        return _c(
-          "div",
-          { key: authUser.id, staticClass: "nav nav-tab menu" },
+    _c("div", { staticClass: "inside" }, [
+      _c("div", { staticClass: "nav nav-tab menu" }, [
+        _c("button", { staticClass: "btn" }, [
+          _c("img", {
+            staticClass: "avatar-xl",
+            attrs: { src: _vm.authUser.avatar, alt: "authUser.name" },
+          }),
+        ]),
+        _vm._v(" "),
+        _vm._m(0),
+        _vm._v(" "),
+        _vm._m(1),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "btn mode",
+            on: {
+              click: function ($event) {
+                $event.preventDefault()
+                return _vm.toggleTheme.apply(null, arguments)
+              },
+            },
+          },
+          [_c("i", { staticClass: "material-icons" }, [_vm._v("brightness_2")])]
+        ),
+        _vm._v(" "),
+        _vm._m(2),
+        _vm._v(" "),
+        _c(
+          "a",
+          {
+            staticClass: "btn logout",
+            attrs: { "data-toggle": "tab" },
+            on: { click: _vm.logout },
+          },
           [
-            _c("button", { staticClass: "btn" }, [
-              _c("img", {
-                staticClass: "avatar-xl",
-                attrs: { src: authUser.avatar, alt: "authUser.name" },
-              }),
+            _c("i", { staticClass: "material-icons" }, [
+              _vm._v("power_settings_new"),
             ]),
-            _vm._v(" "),
-            _vm._m(0, true),
-            _vm._v(" "),
-            _vm._m(1, true),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn mode",
-                on: {
-                  click: function ($event) {
-                    $event.preventDefault()
-                    return _vm.toggleTheme.apply(null, arguments)
-                  },
-                },
-              },
-              [
-                _c("i", { staticClass: "material-icons" }, [
-                  _vm._v("brightness_2"),
-                ]),
-              ]
-            ),
-            _vm._v(" "),
-            _vm._m(2, true),
-            _vm._v(" "),
-            _c(
-              "a",
-              {
-                staticClass: "btn logout",
-                attrs: { "data-toggle": "tab" },
-                on: { click: _vm.logout },
-              },
-              [
-                _c("i", { staticClass: "material-icons" }, [
-                  _vm._v("power_settings_new"),
-                ]),
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "form",
-              {
-                staticStyle: { display: "none" },
-                attrs: {
-                  id: "logout-form",
-                  action: "'logout'",
-                  method: "POST",
-                },
-              },
-              [_vm._v("\n        @csrf\n      ")]
-            ),
           ]
-        )
-      }),
-      0
-    ),
+        ),
+        _vm._v(" "),
+        _c(
+          "form",
+          {
+            staticStyle: { display: "none" },
+            attrs: { id: "logout-form", action: "'logout'", method: "POST" },
+          },
+          [_vm._v("\n                @csrf\n            ")]
+        ),
+      ]),
+    ]),
   ])
 }
 var staticRenderFns = [
@@ -72371,7 +72410,7 @@ var staticRenderFns = [
         attrs: { href: "#messages", "data-toggle": "tab" },
       },
       [
-        _c("i", { staticClass: "material-icons " }, [
+        _c("i", { staticClass: "material-icons" }, [
           _vm._v("chat_bubble_outline"),
         ]),
       ]
@@ -73670,7 +73709,7 @@ var render = function () {
                 _c("img", {
                   staticClass: "avatar-md",
                   attrs: {
-                    src: user.avatar,
+                    src: user.image,
                     "data-toggle": "tooltip",
                     "data-placement": "top",
                     title: user.name,
@@ -73744,7 +73783,7 @@ var staticRenderFns = [
           staticClass: "btn filterDiscussionsBtn active show",
           attrs: { "data-toggle": "list", "data-filter": "all" },
         },
-        [_vm._v("All")]
+        [_vm._v("\n            All\n        ")]
       ),
       _vm._v(" "),
       _c(
@@ -73753,7 +73792,7 @@ var staticRenderFns = [
           staticClass: "btn filterDiscussionsBtn",
           attrs: { "data-toggle": "list", "data-filter": "read" },
         },
-        [_vm._v("Read")]
+        [_vm._v("\n            Read\n        ")]
       ),
       _vm._v(" "),
       _c(
@@ -73762,7 +73801,7 @@ var staticRenderFns = [
           staticClass: "btn filterDiscussionsBtn",
           attrs: { "data-toggle": "list", "data-filter": "unread" },
         },
-        [_vm._v("Unread")]
+        [_vm._v("\n            Unread\n        ")]
       ),
     ])
   },

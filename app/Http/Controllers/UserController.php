@@ -12,29 +12,29 @@ class UserController extends Controller
 {
     public function index()
     {
-        try {
-            $contacts = User::where('id', '!=', Auth::user()->id)->get();
-            return $contacts;
+        $contacts = User::where('id', '!=', Auth::user()->id)->get();
+        return $contacts;
 
-            return response()->json([
-                'success' => true,
-                'contacts' => $contacts,
-                'message' => 'contacts retrieved Successfully',
-                'status' => 200,
-            ]);
-        } catch (\Throwable$th) {
-            Log::error($th);
-            return response()->json(['success' => false, 'status' => 500, 'message' => 'Oops! Something went wrong. Try Again!']);
-        }
-        // return response()->json(User::where('id', '!=', Auth::user()->id)->get());
+        // try {
+        //     // $contacts =->get();
+
+        //     return response()->json([
+        //         'success' => true,
+        //         'contacts' => $contacts,
+        //         'message' => 'contacts retrieved Successfully',
+        //         'status' => 200,
+        //     ]);
+        // } catch (\Throwable$th) {
+        //     Log::error($th);
+        //     return response()->json(['success' => false, 'status' => 500, 'message' => 'Oops! Something went wrong. Try Again!']);
+        // }
     }
 
     public function authUser()
     {
         // return response()->json(User::where('id', '=', Auth::user()->id)->get());
         try {
-            $authUser = Auth::user();
-            return $authUser;
+            $authUser = auth()->user()->get();
 
             return response()->json([
                 'success' => true,
