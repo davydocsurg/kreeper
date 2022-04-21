@@ -16,34 +16,15 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->string('phone')->nullable();
             $table->string('nickname')->nullable();
             $table->string('profile_pics')->default('images/default');
             $table->string('description')->nullable();
-            $table->string('location')->nullable();
-            $table->string('website')->nullable();
+            $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
             $table->rememberToken();
             $table->timestamps();
         });
-
-        // Schema::create('users', function (Blueprint $table) {
-        //     $table->bigIncrements('id');
-        //     $table->string('name');
-        //     $table->string('email')->unique();
-        //     $table->timestamp('email_verified_at')->nullable();
-        //     $table->string('password');
-        //     $table->string('nickname')->nullable();
-        //     $table->string('nickname')->nullable();
-        //     $table->text('avatar')->nullable();
-        //     $table->string('description')->nullable();
-        //     $table->string('location')->nullable();
-        //     $table->string('website')->nullable();
-        //     $table->rememberToken();
-        //     $table->timestamps();
-        // });
     }
 
     /**

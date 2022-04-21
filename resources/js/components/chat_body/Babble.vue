@@ -137,14 +137,14 @@ export default {
     props: {
         user: {
             type: Object,
-            default: null
-        }
+            default: null,
+        },
     },
 
     data() {
         return {
             messages: [],
-            selectedUser: null
+            selectedUser: null,
         };
     },
 
@@ -161,8 +161,8 @@ export default {
     },
     components: {
         call,
-        conversation
+        conversation,
         // chatform
-    }
+    },
 };
 </script>

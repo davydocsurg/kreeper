@@ -11,19 +11,19 @@
         <myaccount/>
         <!-- end of My account -->
         <!-- start of chat history -->
-        <!-- <chathistory/> -->
+        <chathistory/>
         <!-- End of Chat History -->
         <!-- Start of Notifications Settings -->
-        <!-- <notifications/> -->
+        <notifications/>
         <!-- End of Notifications Settings -->
         <!-- Start of Connections -->
-        <!-- <connections/> -->
+        <connections/>
         <!-- End of Connections -->
         <!-- Start of Theme Settings -->
         <themes/>
         <!-- End of Theme Settings -->
         <!-- Start of Language -->
-        <!-- <languages/> -->
+        <languages/>
         <!-- End of Language -->
         <!-- Start of Privacy & Safety -->
         <privacy/>
